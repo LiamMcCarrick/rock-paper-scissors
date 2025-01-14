@@ -19,3 +19,41 @@ function getHumanChoice() {
         return "Scissors";
     }
 }
+
+function playRound(humanSelection,computerSelection) {
+    if (humanSelection === computerSelection) {
+        return console.log("Tie!");
+    } else if (humanSelection === "Rock") {
+        if (computerSelection === "Paper") {
+            computerScore += 1;
+            return console.log(`You Lose! ${computerSelection} beats ${humanSelection}`);
+        } else {
+            humanScore += 1;
+            return console.log(`You Win! ${humanSelection} beats ${computerSelection}`)
+        }
+    } else if (humanSelection === "Paper") {
+        if (computerSelection === "Scissors") {
+            computerScore += 1;
+            return console.log(`You Lose! ${computerSelection} beats ${humanSelection}`);
+        } else {
+            humanScore += 1;
+            return console.log(`You Win! ${humanSelection} beats ${computerSelection}`)
+        }
+    } else if (humanSelection === "Scissors") {
+        if (computerSelection === "Rock") {
+            computerScore += 1;
+            return console.log(`You Lose! ${computerSelection} beats ${humanSelection}`);
+        } else {
+            humanScore += 1;
+            return console.log(`You Win! ${humanSelection} beats ${computerSelection}`)
+        }
+    }
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+
+playRound(humanSelection,computerSelection);
