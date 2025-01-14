@@ -9,4 +9,13 @@ function getComputerChoice() {
     }
 }
 
-console.log(getComputerChoice());
+function getHumanChoice() {
+    let choice = prompt("What's your choice?");
+    if (choice.toLowerCase() === "rock") {
+        return "Rock";
+    } else if (choice.toLowerCase() === "paper") {
+        return "Paper";
+    } else if (choice.toLowerCase() === "scissors") {
+        return "Scissors";
+    }
+}
