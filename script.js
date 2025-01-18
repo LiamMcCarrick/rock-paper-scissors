@@ -9,30 +9,21 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    const choice = prompt("What's your choice?");
-    if (choice.toLowerCase() === "rock") {
-        return "Rock";
-    } else if (choice.toLowerCase() === "paper") {
-        return "Paper";
-    } else if (choice.toLowerCase() === "scissors") {
-        return "Scissors";
-    }
-}
-
 function playRound(humanSelection,computerSelection) {
 
     if (humanSelection === computerSelection) {
-        console.log(`Tie! ${humanSelection} cannot beat ${computerSelection}`)
+        resultDiv.textContent = `Tie! ${humanSelection} cannot beat ${computerSelection}`;
     } else if ((humanSelection === "Scissors" && computerSelection === "Paper") ||
             (humanSelection === "Paper" && computerSelection === "Rock") ||
             (humanSelection === "Rock" && computerSelection === "Scissors")) {
 
-        console.log(`You Win! ${humanSelection} beats ${computerSelection}`);
-        return ++humanScore;
+        resultDiv.textContent = `You Win! ${humanSelection} beats ${computerSelection}`;
+        ++humanScore;
+        hScoreSpan.textContent = humanScore;
     } else {
-        console.log(`You Lose! ${computerSelection} beats ${humanSelection}`);
-        return ++computerScore;
+        resultDiv.textContent = `You Lose! ${computerSelection} beats ${humanSelection}`;
+        ++computerScore;
+        cScoreSpan.textContent = computerScore;
     }
 }
 
@@ -41,21 +32,26 @@ let computerScore = 0;
 
 const hScoreSpan = document.createElement("span");
 const cScoreSpan = document.createElement("span");
-hScoreSpan.textContent = humanScore;
-cScoreSpan.textContent = computerScore;
 
 const hScoreDiv = document.querySelector(".human-score");
 const cScoreDiv = document.querySelector(".computer-score");
+const resultDiv = document.querySelector(".result");
 
 hScoreDiv.appendChild(hScoreSpan);
 cScoreDiv.appendChild(cScoreSpan);
 
-for (i = 0; i < 5; i++) {
-    
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
+const buttons = document.querySelectorAll("button");
+let roundNumber = 0;
 
-    playRound(humanSelection,computerSelection);
-
-}
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let humanSelection = button.textContent;
+        let computerSelection = getComputerChoice();
+        playRound(humanSelection,computerSelection);
+        ++roundNumber;
+        if (roundNumber === 5) {
+            resultDiv.textContent = `Game Over! The final score is You: ${humanScore} and Computer: ${computerScore}`;
+        }
+    })
+})
 
