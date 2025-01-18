@@ -1,0 +1,16 @@
+.title, ul, .result  {
+    text-align: center;
+}
+
+.game-scores {
+    display: flex;
+    justify-content: space-around;
+}
+
+li {
+    list-style-type: none;
+}
+
+.title, .game-scores, li {
+    margin: 20px;
+}
