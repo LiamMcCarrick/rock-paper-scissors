@@ -2,9 +2,13 @@
     text-align: center;
 }
 
-.game-scores {
+.game-scores, .game-play {
     display: flex;
     justify-content: space-around;
+}
+
+.game-play {
+    align-items: center;
 }
 
 li {
