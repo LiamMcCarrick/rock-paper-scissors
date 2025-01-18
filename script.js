@@ -20,28 +20,20 @@ function getHumanChoice() {
     }
 }
 
-function playGame() {
+function playRound(humanSelection,computerSelection) {
 
-    function playRound(humanSelection,computerSelection) {
+    if (humanSelection === computerSelection) {
+        console.log(`Tie! ${humanSelection} cannot beat ${computerSelection}`)
+    } else if ((humanSelection === "Scissors" && computerSelection === "Paper") ||
+            (humanSelection === "Paper" && computerSelection === "Rock") ||
+            (humanSelection === "Rock" && computerSelection === "Scissors")) {
 
-        if (humanSelection === computerSelection) {
-            console.log(`Tie! ${humanSelection} cannot beat ${computerSelection}`)
-        } else if ((humanSelection === "Scissors" && computerSelection === "Paper") ||
-                (humanSelection === "Paper" && computerSelection === "Rock") ||
-                (humanSelection === "Rock" && computerSelection === "Scissors")) {
-
-            console.log(`You Win! ${humanSelection} beats ${computerSelection}`);
-            return ++humanScore;
-        } else {
-            console.log(`You Lose! ${computerSelection} beats ${humanSelection}`);
-            return ++computerScore;
-        }
+        console.log(`You Win! ${humanSelection} beats ${computerSelection}`);
+        return ++humanScore;
+    } else {
+        console.log(`You Lose! ${computerSelection} beats ${humanSelection}`);
+        return ++computerScore;
     }
-
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection,computerSelection);
 }
 
 let humanScore = 0;
@@ -57,4 +49,13 @@ const cScoreDiv = document.querySelector(".computer-score");
 
 hScoreDiv.appendChild(hScoreSpan);
 cScoreDiv.appendChild(cScoreSpan);
+
+for (i = 0; i < 5; i++) {
+    
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection,computerSelection);
+
+}
 
